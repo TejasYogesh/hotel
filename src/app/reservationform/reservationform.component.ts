@@ -2,9 +2,10 @@ import { Component } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 @Component({
   selector: "app-reservationform",
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: "./reservationform.component.html",
   styleUrl: "./reservationform.component.css",
 })
