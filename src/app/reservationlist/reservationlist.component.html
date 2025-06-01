@@ -1,1 +1,74 @@
-<p>This is a List</p>
+<app-home></app-home>
+<h2 style="font-size: 30px;">Reservation List - {{date}}</h2>
+<h4 style="font-size: 20px;">{{timings}}</h4>
+<ul *ngIf="reservations.length" else noreservation style="height: 100vh;">
+    <li *ngFor="let reservation of reservations">
+        GuestName : {{reservation.guestName}}
+        <br>
+        Email : {{reservation.guestEmail}}
+        <br>
+        CheckInDate : {{reservation.checkInDate}}
+        <br>
+        CheckOutDate : {{reservation.checkOutDate}}
+        <br>
+        RoomNumber : {{reservation.roomNumber}}
+        <br>
+        <!-- Id : {{reservation.id}} -->
+        <br>
+
+        <button (click)="deleteReservation(reservation.id)">Delete</button>
+        <button [routerLink]="['/edit', reservation.id]">Edit</button>
+
+    </li>
+</ul>
+<style>
+    ul {
+        list-style-type: none;
+        
+        max-width: 500px;
+        /* text-align: center; */
+    }
+
+    li {
+        background: #f9f9f9;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin: 1rem;
+        padding: 1.2rem 1.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: box-shadow 0.2s;
+    }
+
+    li:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    }
+
+    li br {
+        line-height: 1.5;
+    }
+
+    button {
+        margin-right: 0.7rem;
+        padding: 0.4rem 1.2rem;
+        border: none;
+        border-radius: 4px;
+        background-color: #1976d2;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.2s;
+    }
+
+    button:last-child {
+        background-color: #43a047;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+</style>
+<ng-template #noreservation>
+    <p>No Reservation yet.</p>
+</ng-template>
+
+<app-footer></app-footer>

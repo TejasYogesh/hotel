@@ -1,27 +1,108 @@
+<app-home></app-home>
 <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
     <div>
         <label>Check-in Date</label>
         <input type="date" formControlName="checkInDate">
+        <div *ngIf="reservationForm.get('checkInDate')?.invalid && 
+        reservationForm.get('checkInDate')?.touched">Check In Date is required.</div>
     </div>
 
     <div>
         <label>Check-outDate</label>
         <input type="date" formControlName="checkOutDate">
+        <div *ngIf="reservationForm.get('checkOutDate')?.invalid && 
+        reservationForm.get('checkOutDate')?.touched">Check Out Date is required.</div>
+
     </div>
 
     <div>
         <label>Guest Name</label>
         <input type="text" formControlName="guestName">
+        <div *ngIf="reservationForm.get('guestName')?.invalid && 
+        reservationForm.get('guestName')?.touched">Guest Name is required.</div>
+
     </div>
 
     <div>
         <label>Guest Email</label>
         <input type="text" formControlName="guestEmail">
-    </div>
+        <div *ngIf="reservationForm.get('guestEmail')?.invalid && 
+        reservationForm.get('guestEmail')?.touched">Guest Email is required.</div>
 
+    </div>
+    <style>
+        form {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 24px 32px;
+            background: #f9f9f9;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        form div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 8px;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"] {
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #fff;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            border-color: #0078d7;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        button[type="submit"]:disabled {
+            background: #b3c7e6;
+            cursor: not-allowed;
+        }
+
+        div>div[ng-reflect-ng-if] {
+            color: #d32f2f;
+            font-size: 0.92em;
+            margin-top: 3px;
+        }
+    </style>
     <div>
         <label>Room Number</label>
         <input type="number" formControlName="roomNumber">
+        <div *ngIf="reservationForm.get('roomNumber')?.invalid && 
+        reservationForm.get('roomNumber')?.touched">Room Number is required.</div>
+
     </div>
-   <button type="submit">Submit</button>
+    <button type="submit" [disabled]="reservationForm.invalid">Submit</button>
 </form>
+
+<app-footer>
